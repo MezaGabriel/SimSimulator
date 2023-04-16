@@ -4,49 +4,74 @@ import edu.simsimulator.domain.*;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.List;
 
 public class Test {
 
     @org.junit.jupiter.api.Test
     public void Sims(){
 
-        Sim gabriel = new Sim(List.of(
-                new JuegoDeMesa("Uno", 35))
-        );
-        Sim jorge = new Sim(-30, 130, List.of(
-                new JuegoDeMesa("Uno", 25))
-        );
-        Sim marcelo = new Sim(List.of(
-                new Videojuego("accion"),
-                new Videojuego("puzzle"))
-        );
-        Sim mauricio = new Sim(List.of(
-                new Deporte("futbol"))
-        );
+        Sim gabriel = new Sim("Gabriel");
+
+        Juego callofduty = new VideojuegoAccion("Call of Duty");
+        Juego tetris = new VideojuegoPuzzle("Tetris");
+        Juego monopoly = new JuegoDeMesa("Monopoly", 20);
+        Juego futbol = new Deporte("Futbol");
 
 
-        gabriel.jugar();
-        jorge.jugar();
-        marcelo.jugar();
-        mauricio.jugar();
+        gabriel.jugar(callofduty);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(52);
+        assertThat(gabriel.getInteligencia().getValorActual())
+                .isEqualTo(50);
+
+        gabriel.jugar(tetris);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(52);
+        assertThat(gabriel.getInteligencia().getValorActual())
+                .isEqualTo(70);
 
 
-        assertThat(gabriel.getInteligencia())
-                .isEqualTo(85);
+        gabriel.jugar(monopoly);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(52);
+        assertThat(gabriel.getInteligencia().getValorActual())
+                .isEqualTo(90);
 
-        assertThat(jorge.getInteligencia())
-                .isEqualTo(0);
-        assertThat(jorge.getAgilidad())
+
+        gabriel.jugar(futbol);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(67);
+        assertThat(gabriel.getInteligencia().getValorActual())
+                .isEqualTo(90);
+
+
+        gabriel.jugar(callofduty);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(69);
+        assertThat(gabriel.getInteligencia().getValorActual())
+                .isEqualTo(90);
+
+
+        gabriel.jugar(tetris);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(69);
+        assertThat(gabriel.getInteligencia().getValorActual())
                 .isEqualTo(100);
 
-        assertThat(marcelo.getInteligencia())
-                .isEqualTo(70);
-        assertThat(marcelo.getAgilidad())
-                .isEqualTo(52);
 
-        assertThat(mauricio.getAgilidad())
-                .isEqualTo(65);
+        gabriel.jugar(monopoly);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(69);
+        assertThat(gabriel.getInteligencia().getValorActual())
+                .isEqualTo(100);
+
+
+        gabriel.jugar(futbol);
+        assertThat(gabriel.getAgilidad().getValorActual())
+                .isEqualTo(84);
+        assertThat(gabriel.getInteligencia().getValorActual())
+                .isEqualTo(100);
+
 
     }
 }

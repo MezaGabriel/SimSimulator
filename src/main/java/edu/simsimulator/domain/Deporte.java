@@ -1,21 +1,14 @@
 package edu.simsimulator.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Deporte extends Juego{
 
-public class Deporte extends Actividad{
-
-
-    public Deporte(String nombre) {
-        super();
+    public Deporte(String nombre){
+        super(nombre);
     }
 
-
     @Override
-    protected double aumento(List list, Sim sim) {
-        int aumento = 15;
-        double resp = sim.setAgilidad(sim.getAgilidad() + aumento);
-        return aumento;
+    protected void jugar(Sim jugador) {
+        jugador.aumentarAgilidad(15);
     }
 
 }

@@ -1,63 +1,37 @@
 package edu.simsimulator.domain;
 
-import java.util.List;
-
 public class Sim {
 
+    private String nombre;
+    private Estadistica inteligencia;
+    private Estadistica agilidad;
 
-    private double inteligencia;
-    private double agilidad;
-    private List<Actividad> activities;
-
-
-    public Sim(List<Actividad> activities) {
-        this.inteligencia = 50;
-        this.agilidad = 50;
-        this.activities = activities;
+    public Sim(String nombre, int inteligencia, int agilidad) {
+        this.nombre = nombre;
+        this.inteligencia = new Estadistica(inteligencia);
+        this.agilidad = new Estadistica(agilidad);
+    }
+    public Sim(String nombre) {
+        this(nombre, 50, 50);
     }
 
-    public Sim() {
-        this.inteligencia = 50;
-        this.agilidad = 50;
+    public String getNombre() {
+        return nombre;
     }
-
-    public Sim(double inteligencia, double agilidad, List<Actividad> activities) {
-        this.inteligencia = inteligencia;
-        this.agilidad = agilidad;
-        this.activities = activities;
-    }
-
-
-    public double getInteligencia() {
+    public Estadistica getInteligencia() {
         return inteligencia;
     }
-    public double setInteligencia(double inteligencia) {
-        this.inteligencia = inteligencia;
-        return inteligencia;
-    }
-    public double getAgilidad() {
-        return agilidad;
-    }
-    public double setAgilidad(double agilidad) {
-        this.agilidad = agilidad;
+    public Estadistica getAgilidad() {
         return agilidad;
     }
 
-
-    public void jugar() {
-        for (Actividad actividad : activities) {
-            actividad.aumento(activities, this);
-            limpiarStats();
-            return;
-        }
+    public void jugar(Juego juego) {
+        juego.jugar(this);
     }
-
-
-    public void limpiarStats(){
-        if(getInteligencia() > 100)setInteligencia(100);
-        if(getInteligencia() < 0)setInteligencia(0);
-        if(getAgilidad() > 100)setAgilidad(100);
-        if(getAgilidad() < 0)setAgilidad(0);
+    public void aumentarAgilidad(int cantidadAIncrementar){
+        agilidad.incrementar(cantidadAIncrementar);
     }
-
+    public void aumentarInteligencia(int cantidadAIncrementar){
+        inteligencia.incrementar(cantidadAIncrementar);
+    }
 }
