@@ -5,6 +5,6 @@ public class VideojuegoPuzzle extends Videojuego{
     }
     @Override
     protected void jugar(Sim jugador) {
-        jugador.aumentarInteligencia(20);
+        jugador.incrementar(EstadisticasDisponibles.INTELIGENCIA,20);
     }
 }

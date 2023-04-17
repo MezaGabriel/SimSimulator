@@ -5,6 +5,6 @@ public class VideojuegoAccion extends Videojuego{
     }
     @Override
     protected void jugar(Sim jugador) {
-        jugador.aumentarAgilidad(2);
+        jugador.incrementar(EstadisticasDisponibles.AGILIDAD,2);
     }
 }

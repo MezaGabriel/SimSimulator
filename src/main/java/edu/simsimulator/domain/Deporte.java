@@ -8,7 +8,7 @@ public class Deporte extends Juego{
 
     @Override
     protected void jugar(Sim jugador) {
-        jugador.aumentarAgilidad(15);
+        jugador.incrementar(EstadisticasDisponibles.AGILIDAD,15);
     }
 
 }

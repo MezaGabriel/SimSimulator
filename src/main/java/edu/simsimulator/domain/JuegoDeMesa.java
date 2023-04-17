@@ -8,7 +8,7 @@ public class JuegoDeMesa extends Juego{
 
     @Override
     protected void jugar(Sim jugador) {
-        jugador.aumentarInteligencia(20);
+        jugador.incrementar(EstadisticasDisponibles.INTELIGENCIA,20);
     }
 
 }

@@ -8,9 +8,41 @@ import static org.assertj.core.api.Assertions.*;
 public class Test {
 
     @org.junit.jupiter.api.Test
-    public void Sims(){
+    public void crearSimStandar() {
 
-        Sim gabriel = new Sim("Gabriel");
+        Sim sim = new Sim("Gabriel");
+
+        assertThat(sim)
+                .hasFieldOrPropertyWithValue("nombre", "Gabriel");
+
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.AGILIDAD))
+                .isEqualTo(50);
+
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.INTELIGENCIA))
+                .isEqualTo(50);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void crearSimPersonalizado(){
+
+        Sim sim = new Sim("Gabriel", 150, -10);
+
+        assertThat(sim)
+                .hasFieldOrPropertyWithValue("nombre", "Gabriel");
+
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.AGILIDAD))
+                .isEqualTo(0);
+
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.INTELIGENCIA))
+                .isEqualTo(100);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    public void jugarJuegos(){
+
+        Sim sim = new Sim("Gabriel");
 
         Juego callofduty = new VideojuegoAccion("Call of Duty");
         Juego tetris = new VideojuegoPuzzle("Tetris");
@@ -18,59 +50,31 @@ public class Test {
         Juego futbol = new Deporte("Futbol");
 
 
-        gabriel.jugar(callofduty);
-        assertThat(gabriel.getAgilidad().getValorActual())
+        sim.jugar(callofduty);
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.AGILIDAD))
                 .isEqualTo(52);
-        assertThat(gabriel.getInteligencia().getValorActual())
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.INTELIGENCIA))
                 .isEqualTo(50);
 
-        gabriel.jugar(tetris);
-        assertThat(gabriel.getAgilidad().getValorActual())
+        sim.jugar(tetris);
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.AGILIDAD))
                 .isEqualTo(52);
-        assertThat(gabriel.getInteligencia().getValorActual())
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.INTELIGENCIA))
                 .isEqualTo(70);
 
 
-        gabriel.jugar(monopoly);
-        assertThat(gabriel.getAgilidad().getValorActual())
+        sim.jugar(monopoly);
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.AGILIDAD))
                 .isEqualTo(52);
-        assertThat(gabriel.getInteligencia().getValorActual())
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.INTELIGENCIA))
                 .isEqualTo(90);
 
 
-        gabriel.jugar(futbol);
-        assertThat(gabriel.getAgilidad().getValorActual())
+        sim.jugar(futbol);
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.AGILIDAD))
                 .isEqualTo(67);
-        assertThat(gabriel.getInteligencia().getValorActual())
+        assertThat(sim.getEstadistica(EstadisticasDisponibles.INTELIGENCIA))
                 .isEqualTo(90);
-
-
-        gabriel.jugar(callofduty);
-        assertThat(gabriel.getAgilidad().getValorActual())
-                .isEqualTo(69);
-        assertThat(gabriel.getInteligencia().getValorActual())
-                .isEqualTo(90);
-
-
-        gabriel.jugar(tetris);
-        assertThat(gabriel.getAgilidad().getValorActual())
-                .isEqualTo(69);
-        assertThat(gabriel.getInteligencia().getValorActual())
-                .isEqualTo(100);
-
-
-        gabriel.jugar(monopoly);
-        assertThat(gabriel.getAgilidad().getValorActual())
-                .isEqualTo(69);
-        assertThat(gabriel.getInteligencia().getValorActual())
-                .isEqualTo(100);
-
-
-        gabriel.jugar(futbol);
-        assertThat(gabriel.getAgilidad().getValorActual())
-                .isEqualTo(84);
-        assertThat(gabriel.getInteligencia().getValorActual())
-                .isEqualTo(100);
 
 
     }
